@@ -1,7 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import search from '../components/search.vue'
-import trivial from '../components/trivial.vue'
-import homeview from '../views/homeview.vue'
+import search from '../components/Search.vue'
+import trivial from '../views/TrivialView.vue'
+import home from '../views/HomeView.vue'
+import animeresults from '../views/AnimeResultsView.vue'
+import narutodetails from '../components/NarutoDetails.vue'
 
 
 const routes = [
@@ -19,10 +21,23 @@ const routes = [
   },
 
   {
-    path: '/homeview',
-    name: 'Home View',
-    component: homeview
+    path: '/home',
+    name: 'home',
+    component: home
+  },
+
+  {
+    path: '/animeresults',
+    name: 'AnimeResults',
+    component: animeresults
+  },
+
+  {
+    path: '/narutodetails',
+    name: 'NarutoDetails',
+    component: narutodetails
   }
+
 ]
 
 const router = createRouter({

@@ -3,7 +3,7 @@
         <h1>Otaku Trivial</h1>
     </div>
     <div>
-        <router-link to="/homeview">home</router-link>
+        <router-link to="/home">home</router-link>
     </div>
 </template>
 

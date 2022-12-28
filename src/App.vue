@@ -1,10 +1,10 @@
 <template>
-  <router-link to="/homeview">Home</router-link>  |
+  <router-link to="/home">Home</router-link>  |
   <router-link to="/search">Search Anime</router-link>  |
-  <router-link to="/search">Anime List Searched</router-link>  |
+  <router-link to="/animeresults">Anime List Searched</router-link>  |
+  <router-link to="/narutodetails">Naruto Details Example</router-link>  |
   <router-link to="/trivial">Trivial</router-link>  |
- 
-  <router-link to="/search">Search Anime</router-link>  |
+
 
   <router-view/>
 </template>

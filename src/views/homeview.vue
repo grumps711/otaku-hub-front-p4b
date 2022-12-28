@@ -6,11 +6,7 @@
         <h1>Otaku Hub</h1>
     </div>
     <div>
-        
         <search/>
-    </div>
-    <div>
-   
     </div>
     <div>
         <router-link to="/trivial"> <h2>Otaku Trivial!</h2></router-link>
@@ -21,9 +17,9 @@
 </template>
 
 <script>
-import search from "../components/search.vue"
+import search from "../components/Search.vue"
 export default {
-    name:"homeview",
+    name:"home",
     data() {
         return {
             
