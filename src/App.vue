@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <router-link to="/homeview">Home</router-link>  |
+  <router-link to="/search">Search Anime</router-link>  |
+  <router-link to="/search">Anime List Searched</router-link>  |
+  <router-link to="/trivial">Trivial</router-link>  |
+ 
+  <router-link to="/search">Search Anime</router-link>  |
+
+  <router-view/>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
 };
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+body {
+  background: linear-gradient(
+    117.97deg,
+    rgba(247, 240, 254, 0.16) 26.4%,
+    rgba(251, 209, 196, 0.5725) 99.99%,
+    rgba(255, 168, 121, 0.08) 100%
+  );
+  background-attachment: fixed;
 }
 </style>
