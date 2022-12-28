@@ -37,7 +37,6 @@ const routes = [
     name: 'NarutoDetails',
     component: narutodetails
   }
-
 ]
 
 const router = createRouter({
