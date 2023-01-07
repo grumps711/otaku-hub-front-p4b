@@ -5,12 +5,12 @@
     <div>
         <h1>Otaku Hub</h1>
     </div>
-    <div>
+   <!--  <div>
         <search/>
     </div>
     <div>
         <router-link to="/trivial"> <h2>Otaku Trivial!</h2></router-link>
-    </div>
+    </div> -->
     <div>
         <img class="homeimage" src="..\assets\manga-tekeningen.jpg" alt="anime home image 2">
     </div>

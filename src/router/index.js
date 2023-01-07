@@ -4,6 +4,7 @@ import trivial from '../views/TrivialView.vue'
 import home from '../views/HomeView.vue'
 import animeresults from '../views/AnimeResultsView.vue'
 import narutodetails from '../components/NarutoDetails.vue'
+import animedetails from '../views/AnimeDetails.vue'
 
 
 const routes = [
@@ -36,6 +37,12 @@ const routes = [
     path: '/narutodetails',
     name: 'NarutoDetails',
     component: narutodetails
+  },
+
+  {
+    path: '/animedetails',
+    name: 'AnimeDetails',
+    component: animedetails
   }
 ]
 
