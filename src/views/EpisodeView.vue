@@ -20,7 +20,7 @@ export default {
     methods: {
 
         getSearch() {
-            axios.get('https://gogoanime.consumet.org/anime-details/'+ this.animes.animeId)
+            axios.get('https://gogoanime.consumet.org/vidcdn/watch/'+ this.animes.episodeId)
                 .then((response) => {
                     console.log(response.data)
                     this.animes = response.data

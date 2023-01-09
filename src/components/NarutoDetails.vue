@@ -13,10 +13,6 @@
          :key="genre.id">
          <p>{{genre}}</p>  
         </div>
-    
-
-      
-
 
         </p>
         <img :src="animes.animeImg" alt="img">
@@ -46,7 +42,7 @@ export default {
 
 
         getNaruto() {
-            axios.get('https://gogoanime.consumet.org/anime-details/naruto')
+            axios.get('http://localhost:8080/anime/anime-details?id=naruto')
                 .then((response) => {
                     console.log(response.data)
                     this.animes = response.data

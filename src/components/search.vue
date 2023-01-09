@@ -16,12 +16,19 @@
         </form> 
 
     </div>
+   
 </template>
 
 <script>
+import animeresults from "../views/AnimeResultsView.vue";
 export default {
     name: "search",
- 
+    data() {
+        return {
+            searched: ""
+        }
+    },
+    components:{ animeresults}
 }
 </script>
 
