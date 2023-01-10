@@ -2,22 +2,31 @@
   <h2>Here are the results</h2>
 
   <div>
-        <p>Enter name of anime ei</p>
+        <p>Enter name of anime </p>
          <form  for="name" method="get" action="#"> 
              <input 
-            v-model="nameSearch" 
-            id="nameSearch" 
+            v-model="search" 
+            id="search" 
             type="text" 
-            name="nameSearch"
+            name="search"
             placeholder="Write here" 
             required="">
-
             <input 
             id="searchbutton" 
-            type="submit" 
+            type="button"
             value="search" 
+            @click="getSearch()"
             
             /> 
+
+            <div v-for="anime in animes" :key="anime.id" class="anime">
+              <h4>{{anime.animeTitle}}</h4>
+              <router-link to="/animedetails"><img class="image" :src="anime.animeImg" alt="img"></router-link>
+              <p>{{anime.status}}</p>
+              
+            </div>
+
+            
 
            <!--  <input id="sendButton" type="submit" value="search" @click="sendRequest()>   -->
 
@@ -28,12 +37,7 @@
 
       <!--  <button @click="getSearch">Load Naruto Animes Similar</button>  -->
 
-    <!-- <div v-for="anime in animes" :key="anime.id" class="anime">
-      <h4>{{anime.animeTitle}}</h4>
-      <router-link to="/animedetails"><img class="image" :src="anime.animeImg" alt="img"></router-link>
-      <p>{{anime.status}}</p>
-       </animeDetails> 
-    </div> -->
+    
 
 </template>
 
@@ -53,7 +57,7 @@ export default {
   methods: {
     getSearch() {
     axios
-      .get("http://localhost:8080/anime/search?keyw="+this.nameSearch)
+      .get("http://localhost:80/anime/search?keyw="+this.search)
       .then((response) => {
         console.log(response.data)
         this.animes = response.data
@@ -65,7 +69,7 @@ export default {
 
     sendRequest() {
         if (this.$refs.input.value) {
-            axios.get("http://localhost:8080/anime/search?keyw={nameSearch}", {
+            axios.get("http://localhost:80/anime/search?keyw={nameSearch}", {
                 params: {
                     param: this.$refs.input.value
                 }   

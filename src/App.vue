@@ -28,9 +28,9 @@ export default {
 body {
   background: linear-gradient(
     117.97deg,
-    rgba(247, 240, 254, 0.16) 26.4%,
-    rgba(251, 209, 196, 0.5725) 99.99%,
-    rgba(255, 168, 121, 0.08) 100%
+    #ebd1a0,
+    #de8a69,
+    #b489c9
   );
   background-attachment: fixed;
 }

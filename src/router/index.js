@@ -40,8 +40,8 @@ const routes = [
   },
 
   {
-    path: '/animedetails',
-    name: 'AnimeDetails',
+    path: '/animedetails/:animeid',
+    name: 'animedetails',
     component: animedetails
   }
 ]

@@ -11,9 +11,10 @@
             required="">
             <input 
             id="searchbutton" 
-            type="submit" 
+            type="button"
             value="Search" />
-        </form> 
+       
+        </form>
 
     </div>
    

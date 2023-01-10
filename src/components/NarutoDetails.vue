@@ -42,7 +42,7 @@ export default {
 
 
         getNaruto() {
-            axios.get('http://localhost:8080/anime/anime-details?id=naruto')
+            axios.get('http://localhost:80/anime/anime-details?id=naruto')
                 .then((response) => {
                     console.log(response.data)
                     this.animes = response.data
