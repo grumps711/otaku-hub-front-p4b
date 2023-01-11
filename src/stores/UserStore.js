@@ -11,7 +11,7 @@ export const useUserStore = defineStore(
       user: null,
       points: null,
       userObject:null,
-      dbUser:null,
+      dbUser:[],
       dbUserCopy:null
 
     }),
@@ -77,10 +77,14 @@ export const useUserStore = defineStore(
           .get("http://localhost:80/users/getByUsername?username=" + this.userObject.username)
           .then((response) => {
             console.log(response.data)
+
             this.dbUser = response.data
+            console.log(this.dbUser)
+
+            console.log(this.dbUser.username)
           })
           
-          console.log(this.dbUser);
+      
 
 
           

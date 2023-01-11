@@ -7,9 +7,9 @@
     </div>
     <div>
         <h4 class="text-center text-bg-success">
-        <!--   Welcome {{ dbUser.username }} 
+          Welcome  {{dbUser.username}}  
           <p> You have {{dbUser.points}} points</p>
-          <p> Your level is {{dbUser.level}} </p> -->
+          <p> Your level is {{dbUser.level}} </p>
          
         </h4>
       </div>
@@ -34,6 +34,7 @@ export default {
         return {
             email: null,
              authenticated: null,
+             
         };
     },
     components:{
