@@ -7,7 +7,9 @@
     </div>
     <div>
         <h4 class="text-center text-bg-success">
-          Welcome {{ userObject.username }} 
+        <!--   Welcome {{ dbUser.username }} 
+          <p> You have {{dbUser.points}} points</p>
+          <p> Your level is {{dbUser.level}} </p> -->
          
         </h4>
       </div>
@@ -38,7 +40,8 @@ export default {
         search
     } ,
     computed: {
-     ...mapState(useUserStore, ["userObject"]), 
+     ...mapState(useUserStore, ["dbUser"]), 
+     /* ...mapState(useUserStore, ["dbUser"]) */
   },
 }
 </script>

@@ -10,7 +10,8 @@ export const useUserStore = defineStore(
     state: () => ({
       user: null,
       points: null,
-      userObject:null
+      userObject:null,
+      dbUser:null
 
     }),
 
@@ -32,11 +33,9 @@ export const useUserStore = defineStore(
         if (error == null && user !== null) {
 
           let userObject = {"username": email, "password": password}
-          console.log(userObject);
+          console.log("Registrado y mandado al back con: " + userObject.username);
           this.userObject=userObject;
          
-        
-          console.log("jelou")
           console.log("email registrado " + email);
           console.log("error = " + error);
           alert("Thanks for registering!, you may now login");
@@ -55,6 +54,10 @@ export const useUserStore = defineStore(
           email,
           password,
         });
+
+      
+       
+
         if (data == null) {
           console.log("error en el sign in!!");
 
@@ -65,6 +68,18 @@ export const useUserStore = defineStore(
           this.user = data;
           console.log(data);
           window.location.href = "#/home";
+          let userObject = {"username": email, "password": password}
+          console.log("logeado con "+ userObject.username);
+          this.userObject=userObject;
+
+          axios
+          .get("http://localhost:80/users/getByUsername?username=" + this.userObject.username)
+          .then((response) => {
+            console.log(response.data)
+            this.dbUser = response.data
+          })
+          
+          console.log(this.dbUser);
         }
       },
 
@@ -73,6 +88,7 @@ export const useUserStore = defineStore(
         let { error } = await supabase.auth.signOut();
         window.location.href = "/";
       },
+
     async forgotPassword(email) {
       let { data, error } = await supabase.auth.api.resetPasswordForEmail(
         email
