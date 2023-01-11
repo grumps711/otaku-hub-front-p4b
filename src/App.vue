@@ -4,6 +4,8 @@
   <router-link to="/animeresults">Anime List Searched</router-link>  |
   <router-link to="/narutodetails">Naruto Details Example</router-link>  |
   <router-link to="/trivial">Trivial</router-link>  |
+  <router-link to="/signup">Registrarse</router-link>  |
+  <router-link to="/login">Entrar</router-link>  |
 
 
   <router-view/>

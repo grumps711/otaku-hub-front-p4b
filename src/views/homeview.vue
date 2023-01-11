@@ -6,11 +6,10 @@
         <h1>Otaku Hub</h1>
     </div>
     <div>
-       <!--  <h4 class="text-center text-bg-success">
-          Welcome {{ user.email }} you are now
-          {{user.aud}}
+        <h4 class="text-center text-bg-success">
+          Welcome {{ userObject.username }} 
          
-        </h4> -->
+        </h4>
       </div>
    <!--  <div>
         <search/>
@@ -24,8 +23,8 @@
 </template>
 
 <script>
-/* import { useUserStore } from "../stores/UserStore";
-import { mapState, mapActions } from "pinia";  */
+import { useUserStore } from "../stores/UserStore";
+import { mapState, mapActions } from "pinia"; 
 import search from "../components/search.vue"
 export default {
     name:"home",
@@ -38,9 +37,9 @@ export default {
     components:{
         search
     } ,
-  /*   computed: {
+    computed: {
      ...mapState(useUserStore, ["userObject"]), 
-  }, */
+  },
 }
 </script>
 <style>
