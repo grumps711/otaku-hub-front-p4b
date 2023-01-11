@@ -1,10 +1,6 @@
 <template>
     <div class="main-w3layouts wrapper loginBG">
-      <img
-        class="w-25 p-3 mx-auto d-block"
-        src="../assets/logo.png"
-        alt="Logo My Task"
-      />
+      
       <div
         class="main-agileinfo bg-light shadow-lg p-3 mb-5 bg-light rounded-4 container col-12 col-sm-1giu0 col-md-6 col-lg-4"
       >
@@ -83,7 +79,7 @@
   
           <p class="text-secondary d-flex justify-content-center mt-3">
             Already have an Account?
-            <router-link class="text-primary ms-2" to="/login">Login</router-link>
+            
           </p>
         </div>
       </div>
@@ -91,7 +87,7 @@
   </template>
   
   <script>
-  import { useUserStore } from "../stores/UserStore";
+  import { useUserStore } from "../stores/UserStore.js";
   import { mapState, mapActions } from "pinia";
   
   export default {
@@ -110,6 +106,7 @@
     },
     methods: {
       ...mapActions(useUserStore, ["signUp"]),
+
     },
   };
   </script>

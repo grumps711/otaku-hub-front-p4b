@@ -1,23 +1,27 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import search from '../components/Search.vue'
-import trivial from '../views/TrivialView.vue'
-import home from '../views/HomeView.vue'
-import animeresults from '../views/AnimeResultsView.vue'
-import narutodetails from '../components/NarutoDetails.vue'
-import animedetails from '../views/AnimeDetails.vue'
+import search from '../components/search.vue'
+import trivial from '../views/trivialview.vue'
+import home from '../views/homeview.vue'
+import animeresults from '../views/animeresultsview.vue'
+import narutodetails from '../components/narutodetails.vue'
+import animedetails from '../views/animedetails.vue'
+import signup from '../views/signup.vue'
+import login from '../views/login.vue'
 
 
 const routes = [
  
   {
     path: '/search',
-    name: 'Search',
+    name: 'search',
     component: search
   },
 
+
+
   {
     path: '/trivial',
-    name: 'Trivial',
+    name: 'trivial',
     component: trivial
   },
 
@@ -29,13 +33,13 @@ const routes = [
 
   {
     path: '/animeresults',
-    name: 'AnimeResults',
+    name: 'animeresults',
     component: animeresults
   },
 
   {
     path: '/narutodetails',
-    name: 'NarutoDetails',
+    name: 'narutodetails',
     component: narutodetails
   },
 
@@ -43,7 +47,19 @@ const routes = [
     path: '/animedetails/:animeid',
     name: 'animedetails',
     component: animedetails
+  },
+
+  {
+    path: '/signup',
+    name: 'signup',
+    component: signup
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   }
+
 ]
 
 const router = createRouter({

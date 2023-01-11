@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import animeresults from "../views/AnimeResultsView.vue";
+import animeresults from "../views/animeresultsview.vue";
 export default {
     name: "search",
     data() {

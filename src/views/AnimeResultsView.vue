@@ -1,4 +1,4 @@
-<template lang="">
+<template >
   <h2>Here are the results</h2>
 
   <div>
@@ -43,8 +43,8 @@
 
 <script>
 import axios from "axios";
-import animeDetails from "./AnimeDetails.vue";
-import search from "../components/Search.vue";
+import animeDetails from "./animedetails.vue";
+
 export default {
   name: "animeresults",
   data() {
