@@ -11,7 +11,8 @@ export const useUserStore = defineStore(
       user: null,
       points: null,
       userObject:null,
-      dbUser:null
+      dbUser:null,
+      dbUserCopy:null
 
     }),
 
@@ -80,6 +81,9 @@ export const useUserStore = defineStore(
           })
           
           console.log(this.dbUser);
+
+
+          
         }
       },
 
