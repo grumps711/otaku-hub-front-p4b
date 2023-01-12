@@ -1,32 +1,40 @@
 <template>
 
+    <div class="searchagain">
+       
+        
+    </div>
 
     <div class="all">
-
-        <div class="animecontent">
-            <div class="animeimage"> 
-                <img class="animeimage" :src="animes.animeImg" alt="img">
-            </div>
-            <div class="animecontentcontent">
-                <h1 class="animetitle">{{animes.animeTitle}}</h1>
-
-                <div class="todomenostitle">
-                    <p class="releaseddate"><strong>Released date:</strong> {{animes.releasedDate}}</p>
-                    <div class="genres">
-                        <strong>Genres:</strong>
-                        <div v-for="(genre, index) in animes.genres"
-                        :item="genre"
-                        :index="index"
-                        :key="genre.id">
-                        <p>{{genre}}</p>  
-                        </div>
-                    </div>  
-                    <strong>Synopsis:</strong>
-                    <p class="animesynopsis">{{animes.synopsis}}</p>
-
-
+        <div class="topdiv">
+            <div class="animecontent">
+                <div class="animeimage"> 
+                    <img class="animeimage" :src="animes.animeImg" alt="img">
                 </div>
-                
+                <div class="animecontentcontent">
+                    <h1 class="animetitle">{{animes.animeTitle}}</h1>
+    
+                    <div class="todomenostitle">
+                        <p class="releaseddate"><strong>Released date:</strong> {{animes.releasedDate}}</p>
+                        <div class="genres">
+                            <strong>Genres:</strong>
+                            <div v-for="(genre, index) in animes.genres"
+                            :item="genre"
+                            :index="index"
+                            :key="genre.id">
+                            <p>{{genre}}</p>  
+                            </div>
+                        </div>  
+                        <strong>Synopsis:</strong>
+                        <p class="animesynopsis">{{animes.synopsis}}</p>
+    
+    
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="linkdiv">
+                <router-link class="link" to="/animeresults">Search again</router-link>
             </div>
         </div>
         
@@ -165,5 +173,39 @@ export default {
     
     margin-left: 400px;
     margin-right: 400px;
+}
+
+.searchagain{
+    display:flex;
+    justify-content: flex-end;
+}
+
+.link{
+    text-decoration: none;
+    color: #fff;
+  background-color: #82bfe5;
+  display: block;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 200px;
+  padding: 12px 8px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.4s;
+  padding:10px;
+  margin:20px;
+}
+
+.buttonsearch{
+
+}
+
+.topdiv{
+    display: flex;
+    align-items: center;
+}
+
+.linkdiv{
+    margin-right: 50px;
 }
 </style>

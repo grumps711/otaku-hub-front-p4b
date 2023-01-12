@@ -5,14 +5,25 @@
     <div>
         <h1>Otaku Hub</h1>
     </div>
-    <div>
-        <h4 class="text-center text-bg-success">
+    <div class="userstats" v-if="dbUser.username">
+        <h4 class="text-center bg-secondary">
+            <h2>User stats:</h2>
           Welcome  {{dbUser.username}}  
           <p> You have {{dbUser.points}} points</p>
           <p> Your level is {{dbUser.level}} </p>
-         
         </h4>
-      </div>
+    </div>
+    <div v-else>
+        Please sign in <router-link to="/login">here</router-link> 
+    </div>
+    <p>
+        <router-link to="/animeresults">Anime Search</router-link>
+    </p>
+    <p>
+        <router-link to="/trivial">Trivial</router-link> 
+    </p>
+
+   
    <!--  <div>
         <search/>
     </div>
@@ -49,6 +60,11 @@ export default {
 <style>
     .homeimage{
         width: 70%;
+    }
+
+    .userstats{
+        display: flex;
+        justify-content: center;
     }
     
 </style>

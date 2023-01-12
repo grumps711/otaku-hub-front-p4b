@@ -19,7 +19,7 @@
           >
             <div class="form-floating col-8">
               <input
-                class="text email bg-danger rounded-2 mb-3 border-0 form-control"
+                class="text email bg-light rounded-2 mb-3 border-0 form-control"
                 id="email1"
                 type="email"
                 name="email"
@@ -32,7 +32,7 @@
   
             <div class="form-floating col-8">
               <input
-                class="text bg-danger rounded-2 mb-3 border-0 form-control"
+                class="text bg-light rounded-2 mb-3 border-0 form-control"
                 id="password1"
                 type="password"
                 name="password"
@@ -45,7 +45,7 @@
   
             <div class="form-floating col-8">
               <input
-                class="text bg-danger rounded-2 w3lpass border-0 form-control"
+                class="text bg-light rounded-2 w3lpass border-0 form-control"
                 id="password2"
                 type="password"
                 name="password"
@@ -78,7 +78,7 @@
           </form>
   
           <p class="text-secondary d-flex justify-content-center mt-3">
-            Already have an Account?
+            <router-link to="/login">Already have an Account?</router-link> 
             
           </p>
         </div>

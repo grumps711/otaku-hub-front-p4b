@@ -19,7 +19,7 @@
         >
           <div class="form-floating col-8">
             <input
-              class="text bg-danger rounded-2 mb-3 border-0 form-control"
+              class="text rounded-2 mb-3 border-0 form-control"
               id="floatingInput2"
               type="text"
               name="Username"
@@ -33,7 +33,7 @@
 
           <div class="form-floating col-8">
             <input
-              class="text bg-danger rounded-2 w3lpass mb-3 border-0 form-control"
+              class="text rounded-2 w3lpass mb-3 border-0 form-control"
               id="floatingInput1"
               type="password"
               name="password"
@@ -112,4 +112,9 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: #524e79;
 }
+
+.bg-light {
+ 
+}
+
 </style>
