@@ -1,6 +1,8 @@
 <template >
-  <h2>Here are the results</h2>
-
+  
+  <div class="linkdiv">
+    <router-link class="link" to="/home">home</router-link>
+  </div>
   <div>
         <p>Enter name of anime </p>
          <form  for="name" method="get" action="#"> 
@@ -122,4 +124,25 @@ export default {
       margin: 10px;
 	    border-radius: 6px;
     }
+
+    .link{
+      text-decoration: none;
+      color: #fff;
+    background-color: #82bfe5;
+    display: block;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 200px;
+    padding: 12px 8px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.4s;
+    padding:10px;
+    margin:20px;
+  }
+  .linkdiv{
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+}
 </style>

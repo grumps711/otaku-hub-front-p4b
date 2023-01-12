@@ -1,9 +1,9 @@
 <template>
 
-    <div class="searchagain">
-       
-        
-    </div>
+
+    <div class="linkdiv">
+        <router-link class="link" to="/home">home</router-link>
+      </div>
 
     <div class="all">
         <div class="topdiv">
@@ -207,5 +207,7 @@ export default {
 
 .linkdiv{
     margin-right: 50px;
+    display: flex;
+    justify-content: center;
 }
 </style>

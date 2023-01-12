@@ -16,12 +16,14 @@
     <div v-else>
         Please sign in <router-link to="/login">here</router-link> 
     </div>
-    <p>
-        <router-link to="/animeresults">Anime Search</router-link>
-    </p>
-    <p>
-        <router-link to="/trivial">Trivial</router-link> 
-    </p>
+
+    <div class="linkdiv">
+        <router-link class="link" to="/animeresults">Anime Search</router-link>
+      </div>
+      <div class="linkdiv">
+        <router-link class="link" to="/trivial">Trivial</router-link>
+      </div>
+    
 
    
    <!--  <div>
@@ -57,7 +59,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
     .homeimage{
         width: 70%;
     }
@@ -66,5 +68,25 @@ export default {
         display: flex;
         justify-content: center;
     }
-    
+    .linkdiv{
+        margin-right: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .link{
+        text-decoration: none;
+        color: #fff;
+      background-color: #82bfe5;
+      display: block;
+      margin: 40px auto;
+      width: 90%;
+      max-width: 200px;
+      padding: 12px 8px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.4s;
+      padding:10px;
+      margin:20px;
+    }
 </style>

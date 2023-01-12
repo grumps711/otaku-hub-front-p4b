@@ -1,13 +1,5 @@
 <template>
-  <router-link to="/home">Home</router-link>  |
-  <router-link to="/signup">Registrarse</router-link>  |
-  <router-link to="/login">Entrar</router-link>  |
-  <router-link to="/animeresults">Anime Search</router-link>  |
-  <router-link to="/trivial">Trivial</router-link>  |
-  
-
-
-  <router-view/>
+ <router-view></router-view>
 </template>
 
 <script>
