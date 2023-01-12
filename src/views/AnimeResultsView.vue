@@ -21,7 +21,7 @@
 
             <div v-for="anime in animes" :key="anime.id" class="anime">
               <h4>{{anime.animeTitle}}</h4>
-              <router-link :to=" '/animedetails/' + anime.animeId"><img class="image" :src="anime.animeImg" alt="img"></router-link>
+              <router-link :to="{ name: 'animedetails',params: { animeid: anime.animeId}}"><img class="image" :src="anime.animeImg" alt="img"></router-link>
               <p>{{anime.status}}</p>
               
             </div>

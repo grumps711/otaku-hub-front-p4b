@@ -3,16 +3,35 @@
    <div>
     <p>
         Estas en el componente anime details
+        {{ $route.params.animeid }}
     </p>
    </div>
+
+
     <div>
-
-        <button @click="getNaruto">Load Anime Details</button>
-
-        <p>{{animeId}}</p>
+        
         <h1 class="imageAnime">{{animes.animeTitle}}</h1>
+      <p>Released date: {{animes.releasedDate}}</p>
+      <p>Genres: 
+       
+        
+        <div v-for="(genre, index) in animes.genres"
+         :item="genre"
+         :index="index"
+         :key="genre.id">
+         <p>{{genre}}</p>  
+        </div>
+
+        </p>
         <img :src="animes.animeImg" alt="img">
-        <p>{{animes.animeTitle}}</p>
+        <p>{{animes.synopsis}}</p>
+
+        <div v-for="(episode, index) in animes.episodesList"
+         :item="episode"
+         :index="index"
+         :key="episode.id">
+        <p> <a :href="episode.episodeUrl">{{episode.episodeId}}</a> </p> 
+        </div>
         
     </div>
 </template>
@@ -24,10 +43,11 @@ export default {
     data() {
         return {
             animes: [],
-            animeId:""
+            animeid:""
+            
         };
     },
-    methods: {
+  /*   methods: {
 
         getSearch() {
             axios.get('https://gogoanime.consumet.org/anime-details/'+ this.animes.animeId)
@@ -43,7 +63,7 @@ export default {
     props:["animeId"],
     mounted:{
         getSearch() {
-            axios.get('https://gogoanime.consumet.org/anime-details/'+ this.animes.animeId)
+            axios.get('https://gogoanime.consumet.org/anime-details/'+ this.animeid)
                 .then((response) => {
                     console.log(response.data)
                     this.animes = response.data
@@ -52,7 +72,17 @@ export default {
                     console.log(error)
                 })
         }
-    }
+    } */
+     mounted() {
+        axios.get('https://gogoanime.consumet.org/anime-details/'+ this.$route.params.animeid )
+                .then((response) => {
+                    console.log(response.data)
+                    this.animes = response.data
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+    }, 
 
 }
 </script>
