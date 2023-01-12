@@ -1,7 +1,7 @@
 <template >
   
   <div class="linkdiv">
-    <router-link class="link" to="/home">home</router-link>
+    <router-link class="link" to="/home">Home</router-link>
   </div>
   <div>
         <p>Enter name of anime </p>

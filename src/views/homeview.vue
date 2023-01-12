@@ -61,7 +61,7 @@ export default {
 </script>
 <style scoped>
     .homeimage{
-        width: 70%;
+        width: 50%;
     }
 
     .userstats{
