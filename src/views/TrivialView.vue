@@ -103,12 +103,14 @@ export default {
                     console.log(response.data)
                     this.quote = response.data
                     this.answerListQuotes = []
+                    console.log("Antes de meter valores:    "+this.answerListQuotes)
                     this.answerListQuotes.push(response.data.correctAnswer)
                     this.answerListQuotes.push(response.data.wrongAnswer1)
                     this.answerListQuotes.push(response.data.wrongAnswer2)
-                    console.log(this.answerListQuotes) 
+                    console.log("ORIGINAL QUOTES posicion 0" +this.answerListQuotes[0]+ " posicion 1: "+this.answerListQuotes[1]+ " posicion 2: "+this.answerListQuotes[2]) 
                     this.shuffleArray(this.answerListQuotes)
                     console.log(this.answerListQuotes)
+                    console.log("SHUFFLED QUOTES posicion 0" +this.answerListQuotes[0]+ " posicion 1: "+this.answerListQuotes[1]+ " posicion 2: "+this.answerListQuotes[2]) 
                 })
                 .catch((error) => {
                     console.log(error)
@@ -142,11 +144,11 @@ export default {
             .then((response) => {
                 console.log(response.data)
                 this.quote = response.data
-                 this.answerListQuotes = []
+                
                 this.answerListQuotes.push(response.data.correctAnswer)
                 this.answerListQuotes.push(response.data.wrongAnswer1)
                 this.answerListQuotes.push(response.data.wrongAnswer2)
-                console.log(this.answerListQuotes) 
+                console.log("Answer Quotes Original: "+this.answerListQuotes) 
             })
             .catch((error) => {
                 console.log(error)
@@ -156,6 +158,7 @@ export default {
             .then((response) => {
                 console.log(response.data)
                 this.sceneImage = response.data
+                console.log("Answer Images Original: "+this.answerListImages) 
             })
             .catch((error) => {
                 console.log(error)

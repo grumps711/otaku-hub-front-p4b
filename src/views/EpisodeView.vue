@@ -1,39 +1,42 @@
-<template lang="">
+<template>
     <div>
-        <p>{{animeId}}</p>
-        <h1 class="imageAnime">{{animes.animeTitle}}</h1>
-        <img :src="animes.animeImg" alt="img">
-        <p>{{animes.animeTitle}}</p>
-        
+       
+        ESTO ES ESPISODE VIEW
+
+
+        <iframe width="560" height="315" :src="episodeReferer" frameborder="0" allowfullscreen></iframe>
+        {{this.$route.params.episodeid}}
+       
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-    name: "NarutoDetails",
+    name: "episodeview",
     data() {
         return {
             animes: [],
+            episodeid:"",
+            episodeId:"",
+            episodeReferer:""
         };
     },
-    methods: {
-
-        getSearch() {
-            axios.get('https://gogoanime.consumet.org/vidcdn/watch/'+ this.animes.episodeId)
+    
+    mounted() {
+        
+            axios.get('http://localhost:80/anime/watch?episodeId='+ this.$route.params.episodeid)
                 .then((response) => {
                     console.log(response.data)
-                    this.animes = response.data
+                    this.episodeReferer = response.data.Referer
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-        }
-    },
-    props:["animeId"]
+    }
 
 }
 </script>
-<style lang="">
+<style>
     
 </style>

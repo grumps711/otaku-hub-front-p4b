@@ -46,7 +46,8 @@
                     :item="episode"
                     :index="index"
                     :key="episode.id">
-                   <p> <a :href="episode.episodeUrl">{{episode.episodeId}}</a> </p> 
+                   <!--  <button onclick="getEpisode(episode.episodeId)">{{episode.episodeId}}</button>
+                    <router-link :to="{ name: 'episodeview',params: { episodeid: episode.episodeId}}">{{episode.episodeId}}</router-link> -->
                    </div>
                 </div>
             </div>
@@ -65,20 +66,21 @@ export default {
             
         };
     },
-  /*   methods: {
+     methods: {
 
-        getSearch() {
-            axios.get('https://gogoanime.consumet.org/anime-details/'+ this.animes.animeId)
+        getEpisode(episodeid) {
+            axios.get('http://localhost:80/anime/watch?episodeId='+ episodeid)
                 .then((response) => {
                     console.log(response.data)
-                    this.animes = response.data
+                    this.episodeurl = response.data.Referer
                 })
                 .catch((error) => {
                     console.log(error)
                 })
+                
         }
     },
-    props:["animeId"],
+    /*props:["animeId"],
     mounted:{
         getSearch() {
             axios.get('https://gogoanime.consumet.org/anime-details/'+ this.animeid)

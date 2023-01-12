@@ -7,6 +7,7 @@ import narutodetails from '../components/narutodetails.vue'
 import animedetails from '../views/animedetails.vue'
 import signup from '../views/signup.vue'
 import login from '../views/login.vue'
+import episodeview from '../views/episodeview.vue'
 
 
 const routes = [
@@ -58,6 +59,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: login
+  },
+  {
+    path: '/episodeview/:episodeid',
+    name: 'episodeview',
+    component: episodeview
   }
 
 ]
