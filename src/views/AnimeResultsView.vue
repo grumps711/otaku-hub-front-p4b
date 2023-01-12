@@ -19,12 +19,16 @@
             
             /> 
 
-            <div v-for="anime in animes" :key="anime.id" class="anime">
-              <h4>{{anime.animeTitle}}</h4>
-              <router-link :to="{ name: 'animedetails',params: { animeid: anime.animeId}}"><img class="image" :src="anime.animeImg" alt="img"></router-link>
-              <p>{{anime.status}}</p>
-              
+            <div class="results">
+
+              <div v-for="anime in animes" :key="anime.id" class="anime">
+                <h4 class="animetitle">{{anime.animeTitle}}</h4>
+                <router-link :to="{ name: 'animedetails',params: { animeid: anime.animeId}}"><img class="image" :src="anime.animeImg" alt="img"></router-link>
+                <p>{{anime.status}}</p>
+              </div>
+
             </div>
+            
 
             
 
@@ -94,7 +98,28 @@ export default {
 }
 </script>
 <style scoped>
+
+    .animetitle{
+      font-size: small;
+    }
     .image{
-      width:100px;
+      width: 80%;
+      height: 80%;
+    }
+
+    .results{
+      display: grid;
+      grid-template-columns: [col1] 20% [col2] 20% [col3] 20% [col4] 20% [col5] 20%;
+      grid-gap: 10px;
+      grid-template-rows: [row1] 20% [row2] 20% [row3] 20% [row4] 20%;
+      text-align: center;
+      color: #FFF;
+    }
+
+    .anime{
+      background-color: #658db5;
+	    padding: 30px;
+      margin: 10px;
+	    border-radius: 6px;
     }
 </style>
