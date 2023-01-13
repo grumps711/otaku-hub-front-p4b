@@ -1,12 +1,15 @@
 <template>
     <div>
-       
-        ESTO ES ESPISODE VIEW
 
+        <br><br><br><br><br>
+        {{ this.$route.params.episodeid }}
+        <br><br>
 
-        <iframe width="560" height="315" :src="episodeReferer" frameborder="0" allowfullscreen></iframe>
-        {{this.$route.params.episodeid}}
-       
+        <div>
+            <a :href="episodeReferer" target="_blank">
+                <button>View episode</button>
+            </a>
+        </div>
     </div>
 </template>
 
@@ -17,26 +20,26 @@ export default {
     data() {
         return {
             animes: [],
-            episodeid:"",
-            episodeId:"",
-            episodeReferer:""
+            episodeid: "",
+            episodeId: "",
+            episodeReferer: ""
         };
     },
-    
+
     mounted() {
-        
-            axios.get('http://localhost:80/anime/watch?episodeId='+ this.$route.params.episodeid)
-                .then((response) => {
-                    console.log(response.data)
-                    this.episodeReferer = response.data.Referer
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+
+        axios.get('http://localhost:80/anime/watch?episodeId=' + this.$route.params.episodeid)
+            .then((response) => {
+                console.log(response.data)
+                this.episodeReferer = response.data.Referer
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
 }
 </script>
 <style>
-    
+
 </style>

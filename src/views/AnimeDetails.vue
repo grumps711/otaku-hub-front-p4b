@@ -46,7 +46,6 @@
                     :item="episode"
                     :index="index"
                     :key="episode.id">
-                   <!--  <button onclick="getEpisode(episode.episodeId)">{{episode.episodeId}}</button>
                     <router-link :to="{ name: 'episodeview',params: { episodeid: episode.episodeId}}">{{episode.episodeId}}</router-link> -->
                    </div>
                 </div>
