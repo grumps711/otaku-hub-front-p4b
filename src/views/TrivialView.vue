@@ -4,7 +4,7 @@
         <router-link class="link" to="/home">home</router-link>
     </div>
     <div>
-        <h1>Otaku Trivial</h1>
+        <h1>Otaku Trivia!</h1>
     </div>
 
     <div class="wrapper">
@@ -19,15 +19,18 @@
 
             <div class="answers">
                 <ul>
-                    <li>a) {{ answerListQuotes[0] }} </li>
-                    <li>b) {{ answerListQuotes[1] }}</li>
-                    <li>c) {{ answerListQuotes[2] }}</li>
+                    <li><button @click="checkCorrectQuote(answerListQuotes[0])">a) {{ answerListQuotes[0] }}</button>
+                    </li>
+                    <li><button @click="checkCorrectQuote(answerListQuotes[1])">b) {{ answerListQuotes[1] }}</button>
+                    </li>
+                    <li><button @click="checkCorrectQuote(answerListQuotes[2])">c) {{ answerListQuotes[2] }}</button>
+                    </li>
                 </ul>
             </div>
             <button @click="getQuote">Next Quote</button>
         </div>
 
-        <div v-if="sceneImage">
+        <div class="imagequiz" v-if="sceneImage">
             <div id="quiz">
                 <h1>Image Trivia!</h1>
 
@@ -39,9 +42,15 @@
 
                 <div class="answers">
                     <ul>
-                        <li>a) {{ answerListImages[0] }}</li>
-                        <li>b) {{ answerListImages[1] }}</li>
-                        <li>c) {{ answerListImages[2] }}</li>
+                        <li><button @click="checkCorrectImage(answerListImages[0])">a) {{
+                            answerListImages[0]
+                        }}</button> </li>
+                        <li><button @click="checkCorrectImage(answerListImages[1])">b) {{
+                            answerListImages[1]
+                        }}</button> </li>
+                        <li><button @click="checkCorrectImage(answerListImages[2])">c) {{
+                            answerListImages[2]
+                        }}</button> </li>
                     </ul>
                 </div>
                 <button @click="getImage">Next Image</button>
@@ -82,6 +91,8 @@
 </template>
 
 <script>
+import { useUserStore } from "../stores/UserStore.js";
+import { mapState, mapActions } from "pinia";
 import axios from 'axios'
 export default {
     name: "trivial",
@@ -143,6 +154,28 @@ export default {
                 var temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
+            }
+        },
+
+        checkCorrectQuote(answerUser) {
+            if (answerUser == this.quote.correctAnswer) {
+                console.log("CORRECT QUOTE ANSWER!!!")
+                this.getQuote()
+            }
+            else {
+                console.log("WRONG QUOTE ANSWER...")
+                this.getQuote()
+            }
+        },
+
+        checkCorrectImage(answerUser) {
+            if (answerUser == this.sceneImage.correctAnswer) {
+                console.log("CORRECT IMAGE ANSWER!!!")
+                this.getImage()
+            }
+            else {
+                console.log("WRONG IMAGE ANSWER...")
+                this.getImage()
             }
         }
     },
@@ -220,6 +253,10 @@ export default {
     margin: 20px;
     height: 100%;
     padding-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
 }
 
 #quiz {
@@ -229,8 +266,8 @@ export default {
     color: #fff;
     text-align: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    width: 50%;
     margin: 50px;
+    width: 50%;
 }
 
 #quiz>h1 {
@@ -300,13 +337,13 @@ export default {
     margin-top: 2px;
 }
 
-.wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
+
 
 .false {
     background-color: #DC4437;
+}
+
+.imagequiz {
+    width: 50%;
 }
 </style>

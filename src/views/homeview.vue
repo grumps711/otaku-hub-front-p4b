@@ -79,7 +79,7 @@ export default {
 </script>
 <style scoped>
 .homeimage {
-    width: 50%;
+    width: 90%;
 }
 
 .userstats {
@@ -119,5 +119,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.otakuhub{
+    width: 800px;
 }
 </style>
