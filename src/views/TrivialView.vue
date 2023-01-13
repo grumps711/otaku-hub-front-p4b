@@ -19,9 +19,9 @@
 
             <div class="answers">
                 <ul>
-                    <li>a) </li>
-                    <li>b) {{ quote.wrongAnswer1 }}</li>
-                    <li>c) {{ quote.wrongAnswer2 }}</li>
+                    <li>a) {{ answerListQuotes[0] }} </li>
+                    <li>b) {{ answerListQuotes[1] }}</li>
+                    <li>c) {{ answerListQuotes[2] }}</li>
                 </ul>
             </div>
             <button @click="getQuote">Next Quote</button>
@@ -39,9 +39,9 @@
 
                 <div class="answers">
                     <ul>
-                        <li>a) {{ answerListQuotes[0] }}</li>
-                        <li>b) {{ answerListQuotes[1]  }}</li>
-                        <li>c) {{ answerListQuotes[2]  }}</li>
+                        <li>a) {{ answerListImages[0] }}</li>
+                        <li>b) {{ answerListImages[1] }}</li>
+                        <li>c) {{ answerListImages[2] }}</li>
                     </ul>
                 </div>
                 <button @click="getImage">Next Image</button>
@@ -90,7 +90,7 @@ export default {
             quote: [],
             sceneImage: [],
             answerListQuotes: [],
-            answerListImages: [], 
+            answerListImages: [],
             correctAnswers: null,
             wronganswers: null
         };
@@ -103,14 +103,14 @@ export default {
                     console.log(response.data)
                     this.quote = response.data
                     this.answerListQuotes = []
-                    console.log("Antes de meter valores:    "+this.answerListQuotes)
+                    console.log("Antes de meter valores:    " + this.answerListQuotes)
                     this.answerListQuotes.push(response.data.correctAnswer)
                     this.answerListQuotes.push(response.data.wrongAnswer1)
                     this.answerListQuotes.push(response.data.wrongAnswer2)
-                    console.log("ORIGINAL QUOTES posicion 0" +this.answerListQuotes[0]+ " posicion 1: "+this.answerListQuotes[1]+ " posicion 2: "+this.answerListQuotes[2]) 
+                    console.log("ORIGINAL QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
                     this.shuffleArray(this.answerListQuotes)
                     console.log(this.answerListQuotes)
-                    console.log("SHUFFLED QUOTES posicion 0" +this.answerListQuotes[0]+ " posicion 1: "+this.answerListQuotes[1]+ " posicion 2: "+this.answerListQuotes[2]) 
+                    console.log("SHUFFLED QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
                 })
                 .catch((error) => {
                     console.log(error)
@@ -122,20 +122,29 @@ export default {
                 .then((response) => {
                     console.log(response.data)
                     this.sceneImage = response.data
+                    this.answerListImages = []
+                    console.log("Antes de meter valores:    " + this.answerListImages)
+                    this.answerListImages.push(response.data.correctAnswer)
+                    this.answerListImages.push(response.data.wrongAnswer1)
+                    this.answerListImages.push(response.data.wrongAnswer2)
+                    console.log("ORIGINAL Images posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
+                    this.shuffleArray(this.answerListImages)
+                    console.log(this.answerListImages)
+                    console.log("SHUFFLED QUOTES posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         },
 
-         shuffleArray(array) {
+        shuffleArray(array) {
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
                 var temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
             }
-        } 
+        }
     },
 
     mounted() {
@@ -144,11 +153,15 @@ export default {
             .then((response) => {
                 console.log(response.data)
                 this.quote = response.data
-                
+                this.answerListQuotes = []
+                console.log("Antes de meter valores:    " + this.answerListQuotes)
                 this.answerListQuotes.push(response.data.correctAnswer)
                 this.answerListQuotes.push(response.data.wrongAnswer1)
                 this.answerListQuotes.push(response.data.wrongAnswer2)
-                console.log("Answer Quotes Original: "+this.answerListQuotes) 
+                console.log("ORIGINAL QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
+                this.shuffleArray(this.answerListQuotes)
+                console.log(this.answerListQuotes)
+                console.log("SHUFFLED QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
             })
             .catch((error) => {
                 console.log(error)
@@ -158,15 +171,23 @@ export default {
             .then((response) => {
                 console.log(response.data)
                 this.sceneImage = response.data
-                console.log("Answer Images Original: "+this.answerListImages) 
+                this.answerListImages = []
+                console.log("Antes de meter valores:    " + this.answerListImages)
+                this.answerListImages.push(response.data.correctAnswer)
+                this.answerListImages.push(response.data.wrongAnswer1)
+                this.answerListImages.push(response.data.wrongAnswer2)
+                console.log("ORIGINAL Images posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
+                this.shuffleArray(this.answerListImages)
+                console.log(this.answerListImages)
+                console.log("SHUFFLED QUOTES posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
             })
             .catch((error) => {
                 console.log(error)
             })
-      /*   this.answerListImages.push(this.sceneImage.correctAnswer)
-        this.answerListImages.push(this.sceneImage.wrongAnswer1)
-        this.answerListImages.push(this.sceneImage.wrongAnswer2)
-        console.log(this.answerListImages) */
+        /*   this.answerListImages.push(this.sceneImage.correctAnswer)
+          this.answerListImages.push(this.sceneImage.wrongAnswer1)
+          this.answerListImages.push(this.sceneImage.wrongAnswer2)
+          console.log(this.answerListImages) */
     },
 }
 </script>
