@@ -137,9 +137,7 @@ export default {
     margin: 15px;
 }
 
-.releaseddate{
 
-}
 
 .genres{
     display:flex;
@@ -147,17 +145,13 @@ export default {
     justify-content: space-evenly;
 }
 
-.animeimage{
 
-}
 
 .animetitle{
     background-color: #feffc6;
 }
 
-.animesynopsis{
 
-}
 
 .episodelist{
     margin-top: 50px;
@@ -197,9 +191,6 @@ export default {
   margin:20px;
 }
 
-.buttonsearch{
-
-}
 
 .topdiv{
     display: flex;

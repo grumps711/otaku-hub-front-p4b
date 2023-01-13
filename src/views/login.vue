@@ -113,8 +113,6 @@ body {
     -webkit-tap-highlight-color: #524e79;
 }
 
-.bg-light {
- 
-}
+
 
 </style>
