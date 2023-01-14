@@ -9,7 +9,5 @@ import piniaPersist from 'pinia-plugin-persist'
 
 /* import VueAxios from './plugins/axios' */
 
-
-
-
 createApp(App).use(createPinia().use(piniaPersist)).use(router).mount('#app')
+

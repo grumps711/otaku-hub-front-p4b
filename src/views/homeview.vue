@@ -13,7 +13,9 @@
         </div>
     </div>
     
-   
+   <div>
+    
+   </div>
    
     <div class="info">
         <div class="userstats" v-if="dbUser.username">
@@ -26,13 +28,17 @@
             Please sign in <router-link to="/login">here</router-link> 
         </div>
     
-        <div class="options">
-            <div class="linkdiv">
-                <router-link class="link" to="/animeresults">Anime Search</router-link>
+        <div v-if="dbUser.username" class="options">
+            <div class="optionsmenu">
+                <div class="linkdiv">
+                    <router-link class="link" to="/animeresults">Anime Search</router-link>
+                </div>
+                <div class="linkdiv">
+                    <router-link class="link" to="/trivial">Trivial</router-link>
+                </div>
+                <button class="logoutbutton linkdiv link" @click="logOut()">Log out</button>
             </div>
-            <div class="linkdiv">
-                <router-link class="link" to="/trivial">Trivial</router-link>
-            </div>
+           
 
             <div class="animelist">
                 <h2 v-if="dbUserUpdated.animeList"> My anime list</h2>
@@ -81,6 +87,9 @@ export default {
         ...mapState(useUserStore, ["dbUser"]),
         /* ...mapState(useUserStore, ["dbUser"]) */
     },
+    methods: {
+        ...mapActions(useUserStore, ["logOut"])
+    },
     mounted() {
 
         axios.defaults.headers.common = {
@@ -89,9 +98,7 @@ export default {
         axios
             .get("http://localhost:80/users/getByUsername?username=" + this.dbUser.username)
             .then((response) => {
-                console.log(response.data)
                 this.dbUserUpdated = response.data
-                console.log(this.dbUserUpdated.username)
             })
 
     },
@@ -127,7 +134,7 @@ export default {
     border-radius: 5px;
     transition: background 0.4s;
     padding: 10px;
-    margin: 20px;
+    margin: 10px;
 
 
 }
@@ -157,7 +164,9 @@ export default {
     border-radius: 20px;
     width: 70%;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
+
 
 .bg-secondary {
     --bs-bg-opacity: 0;
@@ -190,5 +199,17 @@ export default {
 .animelist{
     font-family: monospace;
     margin-bottom: 20px;
+}
+
+.logoutbutton{
+    border: none;
+    margin-left: 12%;
+
+}
+
+.optionsmenu{
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
 }
 </style>

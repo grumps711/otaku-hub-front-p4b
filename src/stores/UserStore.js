@@ -68,7 +68,7 @@ export const useUserStore = defineStore(
         } else {
           this.user = data;
           console.log(data);
-          window.location.href = "#/home";
+          
           let userObject = {"username": email, "password": password}
           console.log("logeado con "+ userObject.username);
           this.userObject=userObject;
@@ -84,7 +84,7 @@ export const useUserStore = defineStore(
             console.log(this.dbUser.username)
           })
           
-      
+          window.location.href = "#/home";
 
 
           
@@ -94,7 +94,9 @@ export const useUserStore = defineStore(
 
     async logOut() {
         let { error } = await supabase.auth.signOut();
-        window.location.href = "/";
+        this.dbUser=[]
+        this.dbUserCopy=[]
+        this.user=[]
       },
 
     async forgotPassword(email) {
