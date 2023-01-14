@@ -203,7 +203,8 @@ export default {
 
 .logoutbutton{
     border: none;
-    margin-left: 12%;
+    width: 40%;
+    margin-left: 30%;
 
 }
 
