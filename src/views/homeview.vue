@@ -5,8 +5,8 @@
         <div>
             <img class="homeimage" src="..\assets\1653045471_530623_1653046155_noticia_normal.jpg" alt="anime home image 1">
         </div>
-        <div>
-            <h1>Welcome to Otaku Hub</h1>
+        <div class="imagediv">
+            <img id="titlepng" src="..\assets\text-1673644554952.png">
         </div>
         <div>
             <img class="homeimage" src="..\assets\manga-tekeningen.jpg" alt="anime home image 2">
@@ -17,12 +17,10 @@
    
     <div class="info">
         <div class="userstats" v-if="dbUser.username">
-            <h4 class="text-center bg-secondary">
-                <h2>User stats:</h2>
-              Welcome  {{dbUser.username}}  
-              <p> You have {{dbUser.points}} points</p>
-              <p> Your level is {{dbUser.level}} </p>
-            </h4>
+            <h2>User stats</h2>
+            <p>Welcome  {{dbUserUpdated.username}} </p>
+            <p> You have {{dbUserUpdated.points}} points</p>
+            <p> Your level is {{dbUserUpdated.level}} </p>
         </div>
         <div v-else>
             Please sign in <router-link to="/login">here</router-link> 
@@ -35,9 +33,15 @@
             <div class="linkdiv">
                 <router-link class="link" to="/trivial">Trivial</router-link>
             </div>
+
+            <div class="animelist">
+                <h2> My anime list</h2>
+                    <div v-for="anime in dbUserUpdated.animeList" :key="anime.id" class="anime">
+                        {{anime.animeTitle}}
+                    </div>
+               
+            </div>
         </div>
-
-
     </div>
    
    </div>
@@ -59,12 +63,14 @@
 import { useUserStore } from "../stores/UserStore";
 import { mapState, mapActions } from "pinia";
 import search from "../components/search.vue"
+import axios from 'axios'
 export default {
     name: "home",
     data() {
         return {
             email: null,
             authenticated: null,
+            dbUserUpdated: []
 
         };
     },
@@ -75,27 +81,43 @@ export default {
         ...mapState(useUserStore, ["dbUser"]),
         /* ...mapState(useUserStore, ["dbUser"]) */
     },
+    mounted() {
+
+        axios.defaults.headers.common = {
+            "X-API-Key": "SATtVQ5QqUCXDShLldHXapLIZACp43TKLA7a24hFt5Q",
+        };
+        axios
+            .get("http://localhost:80/users/getByUsername?username=" + this.dbUser.username)
+            .then((response) => {
+                console.log(response.data)
+                this.dbUserUpdated = response.data
+                console.log(this.dbUserUpdated.username)
+            })
+
+    },
 }
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 .homeimage {
-    width: 90%;
+    width: 100%;
 }
 
 .userstats {
-   
+    font-family: monospace;
+
 }
 
 .linkdiv {
-    margin-right: 50px;
     display: flex;
     justify-content: center;
 }
 
 .link {
     text-decoration: none;
-    color: #fff;
-    background-color: #82bfe5;
+    color: rgb(94, 94, 94);
+    background-color: #d2dfa2;
     display: block;
     margin: 40px auto;
     width: 90%;
@@ -106,22 +128,67 @@ export default {
     transition: background 0.4s;
     padding: 10px;
     margin: 20px;
+
+
 }
 
-.everything{
-    display:flex;
+.link:hover {
+    color: rgb(94, 94, 94);
+    background-color: #bfd66e;
+}
+
+.everything {
+    display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: row;
 }
 
-.info{
+.info {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #fadfad;
+    border-radius: 20px;
+    width: 25%;
 }
 
-.otakuhub{
+.userstats {
+    border-radius: 20px;
+    width: 70%;
+    margin-top: 20px;
+}
+
+.bg-secondary {
+    --bs-bg-opacity: 0;
+}
+
+#title {
+    background-color: white;
+    margin: 0;
+    padding: 27px;
+    font-weight: 500;
+    font-family: 'Bangers', cursive;
+    font-size: 50px;
+}
+
+.otakuhub {
     width: 800px;
+}
+
+#titlepng {
+    width: 90%;
+
+}
+
+.imagediv {
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.animelist{
+    font-family: monospace;
+    margin-bottom: 20px;
 }
 </style>

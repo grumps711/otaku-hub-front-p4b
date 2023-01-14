@@ -1,15 +1,18 @@
 <template>
 
     <div class="linkdiv">
-        <router-link class="link" to="/home">home</router-link>
+        <router-link class="link" to="/home">Home</router-link>
     </div>
     <div>
-        <h1>Otaku Trivia!</h1>
+        <img id="otakutriviatitle" src="..\assets\text-1673648583481.png">
     </div>
+    <div class="userdata">
 
+    </div>
     <div class="wrapper">
         <div id="quiz">
             <h1>Quote Trivia!</h1>
+
 
             <p class="questions">
             <div v-if="quote">
@@ -19,15 +22,18 @@
 
             <div class="answers">
                 <ul>
-                    <li><button @click="checkCorrectQuote(answerListQuotes[0])">a) {{ answerListQuotes[0] }}</button>
+                    <li><button id="answer" @click="checkCorrectQuote(answerListQuotes[0])">a) {{ answerListQuotes[0] }}</button>
                     </li>
-                    <li><button @click="checkCorrectQuote(answerListQuotes[1])">b) {{ answerListQuotes[1] }}</button>
+                    <li><button id="answer" @click="checkCorrectQuote(answerListQuotes[1])">b) {{ answerListQuotes[1] }}</button>
                     </li>
-                    <li><button @click="checkCorrectQuote(answerListQuotes[2])">c) {{ answerListQuotes[2] }}</button>
+                    <li><button id="answer" @click="checkCorrectQuote(answerListQuotes[2])">c) {{ answerListQuotes[2] }}</button>
                     </li>
                 </ul>
+                <div v-if="isCorrectQuote=='yes'"><button type="button" class="btn btn-success">Correct!</button></div>
+                <div v-else-if="isCorrectQuote=='no'"><button type="button" class="btn btn-danger">Wrong..</button></div>
+               
+                
             </div>
-            <button @click="getQuote">Next Quote</button>
         </div>
 
         <div class="imagequiz" v-if="sceneImage">
@@ -35,29 +41,28 @@
                 <h1>Image Trivia!</h1>
 
                 <p class="questions">
-                <div v-if="quote">
+                <div v-if="sceneImage">
                     <img class="image" :src="sceneImage.image" alt="img">
                 </div>
                 </p>
 
                 <div class="answers">
                     <ul>
-                        <li><button @click="checkCorrectImage(answerListImages[0])">a) {{
+                        <li><button id="answer" @click="checkCorrectImage(answerListImages[0])">a) {{
                             answerListImages[0]
                         }}</button> </li>
-                        <li><button @click="checkCorrectImage(answerListImages[1])">b) {{
+                        <li><button id="answer" @click="checkCorrectImage(answerListImages[1])">b) {{
                             answerListImages[1]
                         }}</button> </li>
-                        <li><button @click="checkCorrectImage(answerListImages[2])">c) {{
+                        <li><button id="answer" @click="checkCorrectImage(answerListImages[2])">c) {{
                             answerListImages[2]
                         }}</button> </li>
                     </ul>
+                    <div v-if="isCorrectImage=='yes'"><button type="button" class="btn btn-success">Correct!</button></div>
+                    <div v-else-if="isCorrectImage=='no'"><button type="button" class="btn btn-danger">Wrong..</button></div>
                 </div>
-                <button @click="getImage">Next Image</button>
             </div>
-
         </div>
-
     </div>
 
 
@@ -103,25 +108,28 @@ export default {
             answerListQuotes: [],
             answerListImages: [],
             correctAnswers: null,
-            wronganswers: null
+            wronganswers: null,
+            dbUserUpdated: [],
+            isCorrectQuote:"void",
+            isCorrectImage:"void",
         };
+    },
+    computed: {
+        ...mapState(useUserStore, ["dbUser"])
     },
 
     methods: {
+        
         getQuote() {
             axios.get('http://localhost:80/trivial/quote')
                 .then((response) => {
                     console.log(response.data)
                     this.quote = response.data
                     this.answerListQuotes = []
-                    console.log("Antes de meter valores:    " + this.answerListQuotes)
                     this.answerListQuotes.push(response.data.correctAnswer)
                     this.answerListQuotes.push(response.data.wrongAnswer1)
                     this.answerListQuotes.push(response.data.wrongAnswer2)
-                    console.log("ORIGINAL QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
                     this.shuffleArray(this.answerListQuotes)
-                    console.log(this.answerListQuotes)
-                    console.log("SHUFFLED QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
                 })
                 .catch((error) => {
                     console.log(error)
@@ -134,18 +142,24 @@ export default {
                     console.log(response.data)
                     this.sceneImage = response.data
                     this.answerListImages = []
-                    console.log("Antes de meter valores:    " + this.answerListImages)
                     this.answerListImages.push(response.data.correctAnswer)
                     this.answerListImages.push(response.data.wrongAnswer1)
                     this.answerListImages.push(response.data.wrongAnswer2)
-                    console.log("ORIGINAL Images posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
                     this.shuffleArray(this.answerListImages)
-                    console.log(this.answerListImages)
-                    console.log("SHUFFLED QUOTES posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
                 })
                 .catch((error) => {
                     console.log(error)
                 })
+        },
+
+        updateUser() {
+            axios
+            .get("http://localhost:80/users/getByUsername?username=" + this.dbUser.username)
+            .then((response) => {
+                console.log(response.data)
+                this.dbUserUpdated = response.data
+                console.log(this.dbUserUpdated.username)
+            })
         },
 
         shuffleArray(array) {
@@ -161,10 +175,25 @@ export default {
             if (answerUser == this.quote.correctAnswer) {
                 console.log("CORRECT QUOTE ANSWER!!!")
                 this.getQuote()
+                try {
+                    this.addPointToUser()
+                    console.log("Point added!!")
+                    this.isCorrectQuote="yes"
+                } catch (error) {
+                    console.log("Couldn't add point!")
+                }
+                try {
+                    this.updateUser()
+                    console.log("User updated!!")
+                    this.isCorrectQuote="yes"
+                } catch (error) {
+                    console.log("Couldn't update user!")
+                }
             }
             else {
                 console.log("WRONG QUOTE ANSWER...")
                 this.getQuote()
+                this.isCorrectQuote="no"
             }
         },
 
@@ -172,29 +201,55 @@ export default {
             if (answerUser == this.sceneImage.correctAnswer) {
                 console.log("CORRECT IMAGE ANSWER!!!")
                 this.getImage()
+                console.log(this.dbUser.username)
+                try {
+                    this.addPointToUser()
+                    console.log("Point added!!")
+                    this.isCorrectImage="yes"
+                } catch (error) {
+                    console.log("Couldn't add point!")
+                }
+                try {
+                    this.updateUser()
+                    console.log("User updated!!")
+                    this.isCorrectImage="yes"
+                } catch (error) {
+                    console.log("Couldn't update user!")
+                }
             }
             else {
                 console.log("WRONG IMAGE ANSWER...")
                 this.getImage()
+                this.isCorrectImage="no"
             }
-        }
+        },
+
+        addPointToUser() {
+            axios.patch('http://localhost:80/users/addpoints/' + this.dbUser.username)
+                .then((response) => {
+                    console.log(response.data)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
     },
 
     mounted() {
+
+        axios.defaults.headers.common = {
+          "x-trace-key": "SATtVQ5QqUCXDShLldHXapLIZACp43TKLA7a24hFt5Q",
+        };
 
         axios.get('http://localhost:80/trivial/quote')
             .then((response) => {
                 console.log(response.data)
                 this.quote = response.data
                 this.answerListQuotes = []
-                console.log("Antes de meter valores:    " + this.answerListQuotes)
                 this.answerListQuotes.push(response.data.correctAnswer)
                 this.answerListQuotes.push(response.data.wrongAnswer1)
                 this.answerListQuotes.push(response.data.wrongAnswer2)
-                console.log("ORIGINAL QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
                 this.shuffleArray(this.answerListQuotes)
-                console.log(this.answerListQuotes)
-                console.log("SHUFFLED QUOTES posicion 0" + this.answerListQuotes[0] + " posicion 1: " + this.answerListQuotes[1] + " posicion 2: " + this.answerListQuotes[2])
             })
             .catch((error) => {
                 console.log(error)
@@ -205,17 +260,21 @@ export default {
                 console.log(response.data)
                 this.sceneImage = response.data
                 this.answerListImages = []
-                console.log("Antes de meter valores:    " + this.answerListImages)
                 this.answerListImages.push(response.data.correctAnswer)
                 this.answerListImages.push(response.data.wrongAnswer1)
                 this.answerListImages.push(response.data.wrongAnswer2)
-                console.log("ORIGINAL Images posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
                 this.shuffleArray(this.answerListImages)
-                console.log(this.answerListImages)
-                console.log("SHUFFLED QUOTES posicion 0" + this.answerListImages[0] + " posicion 1: " + this.answerListImages[1] + " posicion 2: " + this.answerListImages[2])
             })
             .catch((error) => {
                 console.log(error)
+            })
+
+            axios
+            .get("http://localhost:80/users/getByUsername?username=" + this.dbUser.username)
+            .then((response) => {
+                console.log(response.data)
+                this.dbUserUpdated = response.data
+                console.log(this.dbUserUpdated.username)
             })
         /*   this.answerListImages.push(this.sceneImage.correctAnswer)
           this.answerListImages.push(this.sceneImage.wrongAnswer1)
@@ -228,8 +287,8 @@ export default {
 <style scoped>
 .link {
     text-decoration: none;
-    color: #fff;
-    background-color: #82bfe5;
+    color: rgb(94, 94, 94);
+    background-color: #d2dfa2;
     display: block;
     margin: 40px auto;
     width: 90%;
@@ -242,8 +301,12 @@ export default {
     margin: 20px;
 }
 
+.link:hover {
+    color: rgb(94, 94, 94);
+    background-color: #bfd66e;
+  }
+
 .linkdiv {
-    margin-right: 50px;
     display: flex;
     justify-content: center;
 }
@@ -261,7 +324,6 @@ export default {
 
 #quiz {
     background-color: #34495E;
-    padding-bottom: 60px;
     border-radius: 2%;
     color: #fff;
     text-align: center;
@@ -274,6 +336,27 @@ export default {
     text-align: center;
     padding-top: 25px;
     font-size: 20px;
+}
+
+#answer{
+    text-decoration: none;
+  color: rgb(94, 94, 94);
+  background-color: #d2dfa2;
+  
+ 
+  width: 90%;
+  max-width: 200px;
+  padding: 12px 8px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.4s;
+  padding: 10px;
+  margin: 10px;
+}
+
+#answer:hover{
+    color: rgb(94, 94, 94);
+    background-color: #bfd66e;
 }
 
 .questions {
@@ -345,5 +428,14 @@ export default {
 
 .imagequiz {
     width: 50%;
+}
+
+#otakutriviatitle{
+    width: 30%;
+    margin: 20px;
+}
+
+.userdata{
+    font-family: monospace;
 }
 </style>
