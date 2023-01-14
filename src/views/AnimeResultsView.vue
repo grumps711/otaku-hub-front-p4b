@@ -10,7 +10,7 @@
         <input  id="search" v-model="search"  type="text" name="search" placeholder="Write here" required="">
         <input id="searchbutton" type="button" value="Search" @click="getSearch()" />
       </div>
-      <div>
+      <div class="searchbygenrediv">
         <input  id="searchByGenre" v-model="searchByGenre"  type="text" name="search" placeholder="Write here" required="">
         <input id="searchbuttonByGenre" type="button" value="Search by genre" @click="getSearchByGenre()" />
       </div>
@@ -18,11 +18,11 @@
 
       <div class="results">
         <div v-for="anime in animes" :key="anime.id" class="anime">
-          <h4 class="animetitle">{{ anime.animeTitle }}</h4>
+          <p class="animetitle">{{ anime.animeTitle }} </p>
           <router-link :to="{ name: 'animedetails', params: { animeid: anime.animeId } }"><img class="image"
               :src="anime.animeImg" alt="img"></router-link>
          
-          <p>{{ anime.status }} {{anime.type}} </p>
+          <p>{{ anime.status }} {{anime.releasedDate}} {{anime.type}} </p>
         </div>
       </div>
       <!--  <input id="sendButton" type="submit" value="search" @click="sendRequest()>   -->
@@ -103,19 +103,19 @@ export default {
 </script>
 <style scoped>
 .animetitle {
-  font-size: small;
+  font-size: large;
 }
 
 .image {
-  width: 80%;
-  height: 80%;
+  max-width:70%; 
+  height:auto;
+  margin: 20px;
 }
 
 .results {
   display: grid;
   grid-template-columns: [col1] 20% [col2] 20% [col3] 20% [col4] 20% [col5] 20%;
   grid-gap: 10px;
-  grid-template-rows: [row1] 20% [row2] 20% [row3] 20% [row4] 20%;
   text-align: center;
   color: #FFF;
 }
@@ -151,6 +151,10 @@ export default {
 .link:hover {
   color: rgb(94, 94, 94);
   background-color: #bfd66e;
+}
+
+.searchbygenrediv{
+  font-family: monospace;
 }
 
 .linkdiv {

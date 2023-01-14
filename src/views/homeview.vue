@@ -22,7 +22,7 @@
             <p> You have {{dbUserUpdated.points}} points</p>
             <p> Your level is {{dbUserUpdated.level}} </p>
         </div>
-        <div v-else>
+        <div class="userstats" v-else>
             Please sign in <router-link to="/login">here</router-link> 
         </div>
     
@@ -35,7 +35,7 @@
             </div>
 
             <div class="animelist">
-                <h2> My anime list</h2>
+                <h2 v-if="dbUserUpdated.animeList"> My anime list</h2>
                     <div v-for="anime in dbUserUpdated.animeList" :key="anime.id" class="anime">
                         {{anime.animeTitle}}
                     </div>
