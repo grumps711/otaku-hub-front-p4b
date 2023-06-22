@@ -1,6 +1,3 @@
-<img src="docs/1653045471_530623_1653046155_noticia_normal.jpg" alt="otaku-hub" width="1400"/>
-<img src="docs/text-1673644554952.png" alt="otaku-hub" width="1400"/>        
-<img src="docs/manga-tekeningen.jpg" alt="otaku-hub" width="1400"/>
 
 <div align="center"><h2>SEARCH! STORE! WATCH! and PLAY to our Trivial! Anime Everywhere.</h2></div>
 
@@ -52,4 +49,3 @@ _Developed by:_
 
 * Eugeni Puigdomènech
 
-![imagen](https://user-images.githubusercontent.com/83793367/212431897-31723c4c-6160-464c-a01e-aeefc93d6b93.png)
