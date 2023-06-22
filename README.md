@@ -27,6 +27,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 <br>
 
+# Project Back-end
+
+https://github.com/grumps711/otaku-hub-back-p4b
+
 # External APIs
 
 ### GogoAnime API,
